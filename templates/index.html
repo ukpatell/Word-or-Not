@@ -1,106 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>English Word Classification</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-			background-color: #f1f1f1;
-		}
-		
-		nav {
-			background-color: #333;
-			color: white;
-			display: flex;
-			align-items: center;
-			height: 80px;
-			padding: 0 20px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		}
-		
-		h1 {
-			font-size: 24px;
-			margin: 0;
-		}
-		
-		main {
-			max-width: 800px;
-			margin: 0 auto;
-			padding: 40px;
-			background-color: white;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			border-radius: 8px;
-		}
-		
-		form {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			margin-bottom: 40px;
-		}
-		
-		label {
-			font-size: 20px;
-			margin-bottom: 10px;
-		}
-		
-		input[type="text"] {
-			font-size: 16px;
-			padding: 8px;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			width: 300px;
-			margin-bottom: 20px;
-			text-align: center;
-			outline: none;
-		}
-		
-		button {
-			font-size: 16px;
-			padding: 8px 20px;
-			background-color: #333;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-			transition: background-color 0.2s ease-in-out;
-		}
-		
-		button:hover {
-			background-color: #555;
-		}
-		
-		.result {
-			font-size: 20px;
-			margin: 0;
-			text-align: center;
-		}
-	</style>
+  <title>English Word Classification</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet"
+  />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+      background-color: rgba(0, 191, 255, 0.3);
+    }
+
+    header {
+      background-color: rgba(0, 191, 255, 0.9);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 80px;
+      padding: 0 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      min-height: calc(100vh - 80px - 100px);
+    }
+
+    footer {
+      background-color: rgba(0, 191, 255, 0.9);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    label {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      font-size: 16px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 300px;
+      margin-bottom: 20px;
+      text-align: center;
+      outline: none;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 8px 20px;
+      background-color: rgba(0, 191, 255, 200);;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: navy;
+    }
+
+    .result {
+      font-size: 20px;
+      margin: 0;
+      text-align: center;
+    }
+
+    .author {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    .author a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .author a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-	<nav>
-		<h1>English Word Classification</h1>
-	</nav>
-	<main>
-		<form id="form">
-			<label for="text">Enter a word:</label>
-			<input type="text" id="text" name="text" required>
-			<button type="submit" onclick="submitForm()">Submit</button>
-		</form>
-		<div id="output">
-			<p class="result"></p>
-		</div>
-	</main>
-	<script>
-		async function submitForm() {
-			event.preventDefault();
-			const text = document.getElementById("text").value;
-			const response = await fetch(`/api/check-word?word=${text}`);
-			const data = await response.json();
-			document.querySelector(".result").textContent = data.result;
-		}
-	</script>
+<header>
+  <h1>English Word Classification</h1>
+</header>
+<main>
+  <form id="form">
+    <label for="text">Enter a word:</label>
+    <input id="text" name="text" required type="text"/>
+    <button onclick="submitForm()" type="submit">Submit</button>
+  </form>
+  <div id="output">
+    <p class="result"></p>
+  </div>
+</main>
+<footer>
+  <div class="author">
+    <p>Created by Umang Patel</p>
+    <p>
+      <a href="https://ukpatell.com">Website</a>
+      <span> | </span>
+      <a href="https://github.com/ukpatell/Word-or-Not">Github</a>
+      <span> | </span>
+      <a href="https://linkedin.com/in/ukpatel">LinkedIn</a>
+    </p>
+  </div>
+</footer>
+<script>
+  async function submitForm() {
+    event.preventDefault();
+    const text = document.getElementById("text").value;
+    const response = await fetch(`/api/check-word?word=${text}`);
+    const data = await response.json();
+    document.querySelector(".result").textContent = data.result;
+  }
+</script>
 </body>
 </html>
